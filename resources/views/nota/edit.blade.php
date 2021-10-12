@@ -28,8 +28,7 @@
     <div class="form-group">
     <label class="col-md-4 control-label" for="">Nota</label>
     <div class="col-md-8">
-      <textarea style="height:80%;" name="nota" class="form-control" placeholder="Nota">
-          {{$nota->nota}}
+      <textarea style="height:80%;" name="nota" class="form-control" placeholder="Nota">{{$nota->nota}}
       </textarea>
       @error('nota')
         <div class="alert alert-danger">

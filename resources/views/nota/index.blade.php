@@ -3,6 +3,11 @@
 </head>
 <body>
 
+    <div style="display: flex; flex-flow:wrap row;">
+        <img width="40px" src="./caja-de-texto.png" alt="">
+        <h1 style="font-family:good times;">ATO</h1>
+    </div>
+
     <a class="btn btn-primary" href="{{url('nota/create')}}">
         More
     </a>

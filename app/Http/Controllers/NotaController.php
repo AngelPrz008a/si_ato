@@ -34,9 +34,11 @@ class NotaController extends Controller
         return view('nota.create')
         ->with('Actual',$carbon);
     }
+//
 
 
 
+//
     /**
      * post crear nota
      */
@@ -53,9 +55,11 @@ class NotaController extends Controller
         return redirect('nota')
         ->with('msg', 'Se Creo Correctamente.');
     }
+//
 
 
 
+//
     /**
      * muestra especificamente la nota
      */
@@ -66,9 +70,11 @@ class NotaController extends Controller
         return view('nota.show')
         ->with('nota', $id);
     }
+//
 
 
 
+//
     /**
      * interfaz para modificar nota
      */
@@ -79,9 +85,11 @@ class NotaController extends Controller
         return view('nota.edit')
         ->with('nota', $id);
     }
+//
 
 
 
+//
     /**
      * post, modificar nota
      */
@@ -96,9 +104,11 @@ class NotaController extends Controller
         return redirect('nota')
         ->with('msg','Se Actualizo Correctamente');
     }
+//
 
 
 
+//
     /**
      * post, eliminar
      */
@@ -111,4 +121,5 @@ class NotaController extends Controller
         return redirect('nota')
         ->with('msg', ' Se Elimino Correctamente');
     }
+//
 }
