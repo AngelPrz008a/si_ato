@@ -9,48 +9,26 @@ use App\Http\Requests\storeNota;
 
 class NotaController extends Controller
 {
-
-    /**
-     * Index
-     */
+//
     public function index()
     {
-        $p = 25;
-
         return view('nota.index')
-        ->with('notas', Nota::paginate($p));
-    }
-
-
-
-    /**
-     * Crear nota
-     * envia la fecha actual
-     */
-    public function create()
-    {
-        $carbon = Carbon::now();
-
-        return view('nota.create')
-        ->with('Actual',$carbon);
+        ->with('notas', Nota::all() );
     }
 //
 
 
 
 //
-    /**
-     * post crear nota
-     */
     public function store(storeNota $request)
     {
-        $array = ['titulo','nota','fecha_creacion'];
-
         $new = new Nota();
-        foreach($array as $a){
-            $new->$a = $request->input($a);
-        }
+        $new->titulo = $request->titulo;
+        $new->nota = $request->nota;
+        $new->fecha_creacion = Carbon::now();
+        $new->id_categoria = $request->id_categoria;
         $new->save();
+
 
         return redirect('nota')
         ->with('msg', 'Se Creo Correctamente.');
@@ -60,9 +38,7 @@ class NotaController extends Controller
 
 
 //
-    /**
-     * muestra especificamente la nota
-     */
+
     public function show($id)
     {
         $id = Nota::find($id);
@@ -75,30 +51,13 @@ class NotaController extends Controller
 
 
 //
-    /**
-     * interfaz para modificar nota
-     */
-    public function edit($id)
-    {
-        $id = Nota::find($id);
-
-        return view('nota.edit')
-        ->with('nota', $id);
-    }
-//
-
-
-
-//
-    /**
-     * post, modificar nota
-     */
     public function update(Request $request, $id)
     {
         $id = Nota::find($id);
-        $id->titulo = $request->input('titulo');
-        $id->nota = $request->input('nota');
+        $id->titulo = $request->titulo;
+        $id->nota = $request->nota;
         $id->fecha_modificacion = Carbon::now();
+        $id->id_categoria = $request->id_categoria;
         $id->save();
 
         return redirect('nota')
@@ -109,17 +68,34 @@ class NotaController extends Controller
 
 
 //
-    /**
-     * post, eliminar
-     */
     public function destroy($id)
     {
         $id = Nota::find($id);
 
-        $id->delete();
-
         return redirect('nota')
         ->with('msg', ' Se Elimino Correctamente');
     }
+//
+
+
+
+//
+public function verNover($id, $msg)
+{
+    switch($msg){
+        case 'true':
+            return redirect('nota')
+            ->with('ver', 'false')
+            ->with('verId',$id);
+        break;
+
+        default:
+            return redirect('nota')
+            ->with('ver', 'true')
+            ->with('verId',$id);
+        break;
+    }//end switch
+
+}
 //
 }

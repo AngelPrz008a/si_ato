@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NotaController;
+use App\Http\Controllers\CategoriaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,10 +19,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//notas
+//nota
 Route::resource('nota', NotaController::class);
-
 Route::get('nota/{id}/delete', [NotaController::class, 'destroy']);
+Route::get('nota/{id}/{msg}', [NotaController::class, 'verNover']);
+
+
+//categoria
+Route::resource('categoria', CategoriaController::class);
+
 
 //bootstrap
 Route::get('btp', function () {

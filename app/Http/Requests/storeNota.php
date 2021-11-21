@@ -19,7 +19,6 @@ class storeNota extends FormRequest
         return [
             'titulo'=>  'required',
             'nota'=>    'required',
-            'fecha_creacion'=>'required',
         ];
     }
 }
